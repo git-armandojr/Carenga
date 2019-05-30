@@ -1,0 +1,8 @@
+<div class="form-group search-bar-container">
+  <input placeholder="Procure um endereço" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
+</div>
+<agm-map [latitude]="person.lat" [zoom]="zoom" [longitude]="person.lng" (mapClick)="mapClick($event)">
+  <agm-marker [latitude]="person.lat" [longitude]="person.lng"></agm-marker>
+  <agm-marker *ngFor="let match of person.matches" [latitude]="match.lat" [longitude]="match.lng" [label]="match.name"></agm-marker>
+</agm-map>
+<a id="fab-save" class="btn-floating btn-large waves-effect waves-light" (click)="savePerson(person)"><i class="material-icons">save</i></a>

@@ -1,0 +1,25 @@
+
+  <main style="min-height: 100%">
+    <nav class="teal lighten-1" role="navigation">
+      <div class="nav-wrapper container">
+        <a id="main-header" href="#">Carenga</a>
+        <ul class="right hide-on-med-and-down">
+          <li><a routerLink="register">Cadastro</a></li>
+        </ul>
+        <ul class="right hide-on-med-and-down">
+          <li><a routerLink="login">Login</a></li>
+        </ul>
+  
+        <ul id="nav-mobile" class="sidenav">
+          <li class="teal lighten-1 white-text"><a href="#">Menu</a></li>
+          <li><a routerLink="login" (click)="toggleMenu()">Login</a></li>
+          <li><a routerLink="register" (click)="toggleMenu()">Cadastro</a></li>
+        </ul>
+        <a (click)="toggleMenu()" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      </div>
+    </nav>
+  
+      <router-outlet></router-outlet>
+      
+  </main>
+  

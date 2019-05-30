@@ -1,0 +1,4 @@
+﻿{
+    "connectionString": "mongodb://admin:carenga01@ds235708.mlab.com:35708/carenga",
+    "secret": "948cf9795f8ecc9f9707db17273b2665"
+}

@@ -1,0 +1,75 @@
+<div>
+  <h4>Caronas Cadastradas ({{ person.type }})</h4>
+  <table class="highlight centered">
+    <thead>
+      <tr>
+        <td>Nome</td>
+        <td>e-mail</td>
+        <td>Endereço</td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let match of person.matches">
+        <td>{{ match.name }}</td>
+        <td>{{ match.mail }}</td>
+        <td>{{ match.address }}</td>
+        <td>
+          <a class="waves-effect waves-light red-text" (click)="removeMatch(match)"><i class="material-icons">delete_forever</i></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h6 *ngIf="!person.matches || !person.matches.length" id="no-items"><i>Nenhum Item cadastrado</i></h6>
+
+  <br/>
+
+  <h5>Caronas Solicitadas</h5>
+  <table class="highlight centered">
+    <thead>
+      <tr>
+        <td>Nome</td>
+        <td>e-mail</td>
+        <td>Endereço</td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let invite of person.invites">
+        <td>{{ invite.name }}</td>
+        <td>{{ invite.mail }}</td>
+        <td>{{ invite.address }}</td>
+        <td>
+          <a class="waves-effect waves-light red-text" (click)="removeInvite(invite)"><i class="material-icons">delete_forever</i></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h6  *ngIf="!person.invites || !person.invites.length" id="no-items"><i>Nenhum Item cadastrado</i></h6>
+
+  <br/>
+  <br/>
+  <br/>
+
+  <button class="btn waves-effect waves-light" id="search-button" type="button" (click)="nextCandidate()" [disabled]="!person.lat || !person.lng">
+    <span>Procurar caronas</span>
+    <i class="material-icons right">search</i>
+  </button>
+</div>
+
+<div class="modal">
+  <div class="modal-content">
+    <h4>{{ currentPerson.firstName }} {{ currentPerson.lastName }}</h4>
+    <agm-map [latitude]="currentPerson.lat" [longitude]="currentPerson.lng" [zoom]="12">
+        <agm-marker [latitude]="person.lat" [longitude]="person.lng"></agm-marker>
+        <agm-marker [latitude]="currentPerson.lat+0.01" [longitude]="currentPerson.lng" [label]="currentPerson.firstName"></agm-marker>
+    </agm-map>
+    <p>{{ currentPerson.address }}</p>
+  </div>
+  <div class="modal-footer">
+    <a class="btn-floating btn-large waves-effect waves-light red" style="float:left" (click)="refuse(currentPerson)"><i class="material-icons">close</i></a>
+    <a class="btn-floating btn-large waves-effect waves-light green" (click)="accept(currentPerson)"><i class="material-icons">done</i></a>
+  </div>
+</div>
